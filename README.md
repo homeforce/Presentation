@@ -5,5 +5,5 @@ Interessante URLs
 - http://stackoverflow.com/questions/8799993/load-images-from-directory-into-picture-box-at-certain-intervals
 
 medewerkers
--Ruben De Swaef
--Alex Vanderbist
+- Ruben De Swaef
+- Alex Vanderbist
