@@ -20,6 +20,14 @@ namespace Presentation
             _model = new PresentationModel(this);
             _view.Show();
             _mainController = mainController;
+
+            // set empty slide 
+            _model.EmptySlide = new SlideController();
+            TweetController emptyTweet = new TweetController();
+            emptyTweet.SetTweet("No slides", "Please load images or tweets?");
+            _model.EmptySlide.SetSlide(emptyTweet);
+            _model.addSlide(_model.EmptySlide);
+            _view.startPresentation();
         }
 
         public PresentationView getView()
@@ -34,34 +42,57 @@ namespace Presentation
 
         public SlideController GetNextSlide()
         {
-            if (_model.Slides.Count > _model.CurrentSlide +1)
+            if(_model.Slides.Count > 0)
             {
-                // next slide is good
-                return _model.Slides[_model.CurrentSlide + 1];
-            }
-            else
+                if (_model.Slides.Count > _model.CurrentSlide + 1)
+                {
+                    // next slide is good
+                    _model.CurrentSlide++;
+                    return _model.Slides[_model.CurrentSlide];
+                }
+                else
+                {
+                    //start over
+                    _model.CurrentSlide = 0;
+                    return _model.Slides.First();
+                }
+            } else
             {
-                //start over
-                return _model.Slides.First();
+                _model.CurrentSlide = 0;
+                return _model.EmptySlide;
             }
         }
 
         public SlideController GetCurrentSlide()
         {
-            return _model.Slides[_model.CurrentSlide];
-        }
-
-        public SlideController GetPrevSlide()
-        {
-            if (_model.CurrentSlide - 1 >= 0)
-            {
-                // prev slide is good
-                return _model.Slides[_model.CurrentSlide - 1];
-            }
+            if (_model.Slides.Count > 0) return _model.Slides[_model.CurrentSlide];
             else
             {
-                //start over
-                return _model.Slides[_model.Slides.Count -1];
+                _model.CurrentSlide = 0;
+                return _model.EmptySlide;
+            }
+        }
+
+        public SlideController PrevSlide()
+        {
+            if(_model.Slides.Count > 0)
+            {
+                if (_model.CurrentSlide - 1 >= 0)
+                {
+                    // prev slide is good
+                    _model.CurrentSlide--;
+                    return _model.Slides[_model.CurrentSlide];
+                }
+                else
+                {
+                    //start over
+                    _model.CurrentSlide = _model.Slides.Count - 1;
+                    return _model.Slides[_model.CurrentSlide];
+                }
+            } else
+            {
+                _model.CurrentSlide = 0;
+                return _model.EmptySlide;
             }
         }
 

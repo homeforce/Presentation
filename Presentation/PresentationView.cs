@@ -23,14 +23,7 @@ namespace Presentation
 
         private void PresentationView_Load(object sender, EventArgs e)
         {
-          TweetController tweet = new TweetController();
-          tweet.SetTweet("Rubends", "wauw, wat eeen mooie app");
-          //ImageController image = new ImageController();
-          //image.SetImage(@"C:\Users\ruben_000\Dropbox\Photos\Pictures\70skate3.jpg");
-          SlideController slide = new SlideController();
-          slide.SetSlide(tweet);
 
-          Controls.Add(slide.GetView());
         }
 
         private void PresentationView_FormClosing(object sender, FormClosingEventArgs e)
@@ -56,8 +49,6 @@ namespace Presentation
 
         public void ShowSlide(int slideNr)
         {
-            Controls.Add(_controller.getModel().Slides[slideNr].GetView());
-            _controller.getModel().CurrentSlide = slideNr;
         }
 
         private void movementTimer_Tick(object sender, EventArgs e)
@@ -67,12 +58,12 @@ namespace Presentation
 
         public void NextSlide()
         {
-            SlideController nextSlide = _controller.GetNextSlide();
-            SlideController prevSlide = _controller.GetPrevSlide();
+            // remove previous slide
             SlideController currSlide = _controller.GetCurrentSlide();
-            nextSlide.GetView().Location = new Point(60, 0);
-            Controls.Add(nextSlide.GetView());
             Controls.Remove(currSlide.GetView());
+
+            // add requested slide
+            Controls.Add(_controller.GetNextSlide().GetView());
             Console.WriteLine("Next slide");
         }
     }
