@@ -10,11 +10,18 @@ namespace Presentation
   {
     private ImageModel _model;
     private ImageView _view;
+    private PresentationController _presentation;
 
-    public ImageController()
+    public PresentationController GetPresentation()
+        {
+            return _presentation;
+        }
+
+    public ImageController(PresentationController presentation)
     {
       _model = new ImageModel(this);
       _view = new ImageView(this);
+      _presentation = presentation;
     }
     public void SetImage(string imagepath)
     {

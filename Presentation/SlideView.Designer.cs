@@ -28,15 +28,16 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.SuspendLayout();
-      // 
-      // SlideView
-      // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.Name = "SlideView";
-      this.Load += new System.EventHandler(this.SlideView_Load);
-      this.ResumeLayout(false);
+            this.SuspendLayout();
+            // 
+            // SlideView
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.Name = "SlideView";
+            this.Load += new System.EventHandler(this.SlideView_Load);
+            this.ResumeLayout(false);
 
     }
 

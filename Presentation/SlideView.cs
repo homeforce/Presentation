@@ -22,12 +22,14 @@ namespace Presentation
     public void UpdateView()
     {
       if(_controller.GetModel().SlideType == GlobalVar.SLIDE_TYPE_TWEET)
-      {
-        Controls.Add(_controller.GetModel().Tweet.GetView());
+            {
+                _controller.GetModel().Tweet.GetView().Dock = DockStyle.Fill;
+                Controls.Add(_controller.GetModel().Tweet.GetView());
       }
       else if (_controller.GetModel().SlideType == GlobalVar.SLIDE_TYPE_IMAGE)
       {
-        Controls.Add(_controller.GetModel().Image.GetView());
+            _controller.GetModel().Image.GetView().Dock = DockStyle.Fill;
+            Controls.Add(_controller.GetModel().Image.GetView());
       }
     }
     private void SlideView_Load(object sender, EventArgs e)

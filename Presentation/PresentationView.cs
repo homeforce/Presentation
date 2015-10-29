@@ -23,7 +23,6 @@ namespace Presentation
 
         private void PresentationView_Load(object sender, EventArgs e)
         {
-
         }
 
         private void PresentationView_FormClosing(object sender, FormClosingEventArgs e)
@@ -63,7 +62,9 @@ namespace Presentation
             Controls.Remove(currSlide.GetView());
 
             // add requested slide
-            Controls.Add(_controller.GetNextSlide().GetView());
+            SlideView nextSlide = _controller.GetNextSlide().GetView();
+            nextSlide.Dock = DockStyle.Fill;
+            Controls.Add(nextSlide);
             Console.WriteLine("Next slide");
         }
     }

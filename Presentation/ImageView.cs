@@ -22,7 +22,8 @@ namespace Presentation
 
     private void ImageView_Load(object sender, EventArgs e)
     {
-
+            pictureBox1.Width = _controller.GetPresentation().getView().Width;
+            pictureBox1.Height = _controller.GetPresentation().getView().Height;
     }
     public void UpdateView()
     {

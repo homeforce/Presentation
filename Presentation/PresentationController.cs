@@ -111,7 +111,7 @@ namespace Presentation
                     MessageBox.Show("Files loaded: " + imagesDir.getLength().ToString(), "Message");
                     foreach(string imagePath in imagesDir.getImagePaths())
                     {
-                        ImageController image = new ImageController();
+                        ImageController image = new ImageController(this);
                         image.SetImage(imagePath);
                         SlideController slide = new SlideController();
                         slide.SetSlide(image);
