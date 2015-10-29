@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="Fullscreen.cs" />
     <Compile Include="PresentationController.cs" />
+    <Compile Include="PresentationModel.cs" />
     <Compile Include="PresentationView.cs">
       <SubType>Form</SubType>
     </Compile>
