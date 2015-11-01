@@ -29,29 +29,39 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.movementTimer = new System.Windows.Forms.Timer(this.components);
+            this.slideTimer = new System.Windows.Forms.Timer(this.components);
+            this.tweetTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // movementTimer
+            // slideTimer
             // 
-            this.movementTimer.Enabled = true;
-            this.movementTimer.Interval = 5000;
-            this.movementTimer.Tick += new System.EventHandler(this.movementTimer_Tick);
+            this.slideTimer.Enabled = true;
+            this.slideTimer.Interval = 5000;
+            this.slideTimer.Tick += new System.EventHandler(this.slideTimer_Tick);
+            // 
+            // tweetTimer
+            // 
+            this.tweetTimer.Enabled = true;
+            this.tweetTimer.Interval = 30000;
+            this.tweetTimer.Tick += new System.EventHandler(this.tweetTimer_Tick);
             // 
             // PresentationView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.KeyPreview = true;
             this.Name = "PresentationView";
             this.Text = "Presentation View";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PresentationView_FormClosing);
             this.Load += new System.EventHandler(this.PresentationView_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PresentationView_KeyDown);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Timer movementTimer;
+        private System.Windows.Forms.Timer slideTimer;
+        private System.Windows.Forms.Timer tweetTimer;
     }
 }

@@ -26,6 +26,14 @@ namespace Presentation
 
         }
 
+        public void UpdateView()
+        {
+            txtTwitterSearch.Text = _controller.getModel().TwitterSearch;
+            numericImageGroupSize.Value = _controller.getModel().ImageGroupSize;
+            numericMaxTweets.Value = _controller.getModel().MaxTweets;
+            numericSlideTime.Value = _controller.getModel().SecondsBetweenSlides;
+        }
+
         private void btnToggleFullscreen_Click(object sender, EventArgs e)
         {
             _controller.getModel().Fullscreen = !_controller.getModel().Fullscreen;
@@ -54,6 +62,42 @@ namespace Presentation
         private void btnReloadImages_Click(object sender, EventArgs e)
         {
             _controller.getMainController().getPresentationController().loadImages();
+        }
+
+        private void btnPrevSlide_Click(object sender, EventArgs e)
+        {
+            _controller.getMainController().getPresentationController().PrevSlide();
+        }
+
+        private void btnNextSlide_Click(object sender, EventArgs e)
+        {
+            _controller.getMainController().getPresentationController().NextSlide();
+        }
+
+        private void numericSlideTime_ValueChanged(object sender, EventArgs e)
+        {
+            _controller.getModel().SecondsBetweenSlides = (int) numericSlideTime.Value;
+        }
+
+        private void btnSetSearch_Click(object sender, EventArgs e)
+        {
+            _controller.getModel().TwitterSearch = txtTwitterSearch.Text;
+            _controller.getMainController().getPresentationController().loadTweets();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://dev.twitter.com/rest/public/search");
+        }
+
+        private void numericImageGroupSize_ValueChanged(object sender, EventArgs e)
+        {
+            _controller.getModel().ImageGroupSize = (int) numericImageGroupSize.Value;
+        }
+
+        private void numericMaxTweets_ValueChanged(object sender, EventArgs e)
+        {
+            _controller.getModel().MaxTweets = (int)numericMaxTweets.Value;
         }
     }
 }

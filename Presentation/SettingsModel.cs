@@ -10,6 +10,23 @@ namespace Presentation
     {
         private bool _fullscreen = false;
         private string _imagesFolderPath = "";
+        private int _secondsBetweenSlides = 5;
+
+        public string TwitterSearch { get; set; }
+        public int ImageGroupSize { get; set; }
+        public int MaxTweets { get; set; }
+
+        public int SecondsBetweenSlides
+        {
+            get
+            {
+                return _secondsBetweenSlides;
+            }
+            set
+            {
+                _secondsBetweenSlides = value;
+            }
+        }
 
         public bool Fullscreen
         {

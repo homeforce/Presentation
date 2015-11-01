@@ -31,41 +31,45 @@ namespace Presentation
             Application.Exit();
         }
 
-        public void startPresentation()
+        public void UpdateView()
         {
-            //List<SlideController> slides = _controller.getModel().Slides;
-            //foreach (SlideController slide in slides)
-            //{
-            //    int xPos = this.Width * slides.IndexOf(slide);
-            //    slide.GetView().Location = new Point(xPos, 0);
-            //    Controls.Add(slide.GetView());
-            //}
+            // reset timer
+            slideTimer.Interval = _controller.getMain().getSettingsController().getModel().SecondsBetweenSlides * 1000;
 
-            ShowSlide(0);
-
-
-        }
-
-        public void ShowSlide(int slideNr)
-        {
-        }
-
-        private void movementTimer_Tick(object sender, EventArgs e)
-        {
-            NextSlide();
-        }
-
-        public void NextSlide()
-        {
-            // remove previous slide
-            SlideController currSlide = _controller.GetCurrentSlide();
-            Controls.Remove(currSlide.GetView());
+            // remove old slides
+            foreach (Control controlItem in Controls.OfType<SlideView>())
+            {
+                Controls.Remove(controlItem);
+            }
 
             // add requested slide
-            SlideView nextSlide = _controller.GetNextSlide().GetView();
-            nextSlide.Dock = DockStyle.Fill;
-            Controls.Add(nextSlide);
+            SlideController nextSlide = _controller.getModel().Slides[_controller.getModel().CurrentSlide];
+            nextSlide.GetView().Dock = DockStyle.Fill;
+            nextSlide.ResizeContent();
+            Controls.Add(nextSlide.GetView());
+
             Console.WriteLine("Next slide");
+
+        }
+
+        private void slideTimer_Tick(object sender, EventArgs e)
+        {
+            _controller.NextSlide();
+        }
+
+        private void PresentationView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                FullScreen fs = new FullScreen();
+                fs.LeaveFullScreenMode(this);
+                _controller.getMain().getSettingsController().getModel().Fullscreen = false;
+            }
+        }
+
+        private void tweetTimer_Tick(object sender, EventArgs e)
+        {
+            _controller.loadTweets();
         }
     }
 }

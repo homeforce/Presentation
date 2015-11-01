@@ -15,8 +15,8 @@ namespace Presentation
         public MainController()
         {
             _view = new MainView(this);
-            _presentationController = new PresentationController(this);
             _settingsController = new SettingsController(this);
+            _presentationController = new PresentationController(this);
         }
 
         public MainView getView()

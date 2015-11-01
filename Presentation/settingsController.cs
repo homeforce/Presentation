@@ -19,6 +19,12 @@ namespace Presentation
             _view = new SettingsView(this);
             _model = new SettingsModel();
             _mainController = mainController;
+
+            _model.TwitterSearch = "ILSJ";
+            _model.MaxTweets = 50;
+            _model.ImageGroupSize = 5;
+            _model.SecondsBetweenSlides = 5;
+            _view.UpdateView();
         }
 
         public SettingsView getView()

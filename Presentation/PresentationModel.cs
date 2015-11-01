@@ -41,6 +41,10 @@ namespace Presentation
             {
                 return _slides;
             }
+            set
+            {
+                _slides = value;
+            }
         }
 
         public int CurrentSlide
@@ -51,6 +55,7 @@ namespace Presentation
             }
             set
             {
+                Console.WriteLine("Next slide: " + value);
                 _currentSlide = value;
             }
         }
